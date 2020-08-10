@@ -1,0 +1,46 @@
+Steps
+
+- npm install express
+
+-Step 1: Payment
+    - make express '/payment' endpoint with POST
+    - adds a payment from the user
+    - input: 
+        - user
+        - amount
+        - date = Date.Now()
+-Step 2: Recurring Payment
+    - update '/recurring-payment' to be a recurring payment
+    - make RecurringPayment Schema
+    - Input:
+        - active: set internally to true
+            -what does this switch mean?
+        - user 
+        - amount
+        - frequency
+            - daily / weekly / bi_weekly / semi_monthly / monthly
+            -freq should be payment.date
+            -payment.created = Date.now
+
+-Step3: Process recurring payments
+    - make an endpoint
+    - created payments for the next 30 days for all users
+    - Process payments with
+        -payment.active = true
+        - payment.date is between Date.now by day and 30 days from now
+    -  return in res 
+    - 
+-Step 4: Cancel recurring payment   
+    - set future recuring payments.active to false
+    - also has to go through and set payment.active for that users future payment to false
+-Step 5: Update recurring payment Freq: by user
+    - update the frequency in RecurringPayment
+    - update the frequency in Payment for that user
+        - might be good to delete future payment and rerun Process Payments
+
+
+
+Questions:
+- what is active flag for?
+- what is difference between payment.date / created / updated
+- Step 3-5: should these be endpoints?
